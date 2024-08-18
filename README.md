@@ -1,5 +1,5 @@
 # Algorithm Visualiser
-This is a Python program that visualises how different sorting algorithms work, to try it download the `.zip` or clone this repository and run `Algorithm Visualiser.exe`.
+This is a Python program that visualises how different sorting algorithms work, to try it download the `.zip` or clone this repository and run `AlgorithmVisualiser.exe`.
 
 When you run the program press shuffle to shuffle the elements in the array and choose one of the algorithms to sort it in ascending order.
 
