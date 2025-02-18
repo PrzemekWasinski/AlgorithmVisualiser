@@ -3,6 +3,10 @@ This is a Python program that visualises how different sorting algorithms work, 
 
 When you run the program press shuffle to shuffle the elements in the array and choose one of the algorithms to sort it in ascending order.
 
-![unsorted](https://github.com/user-attachments/assets/18cadb08-1dd0-4f98-9d55-b2d14d11a17e)
+Unsorted:
 
-![sorted](https://github.com/user-attachments/assets/6b282842-1931-4c3c-af90-5896253e6a90)
+<img width="720" alt="unsorted" src="https://github.com/user-attachments/assets/34a15994-8211-4f39-b6b4-5aef6dc7686c" />
+
+Sorted:
+
+<img width="720" alt="sorted" src="https://github.com/user-attachments/assets/79197883-7c9c-474f-8b89-1909a0858e92" />
