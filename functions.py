@@ -2,16 +2,13 @@ import pygame
 import time
 
 # Draw array
-def draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, index):
+def draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
     pygame.draw.rect(window, (0, 0, 0), (0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
 
     start = 0
     for i in range(len(array)):
-        if array[i] == index:
-            pygame.draw.rect(window, (255, 0, 0), (start, SCREEN_HEIGHT - array[i], 5, SCREEN_HEIGHT))
-        else:
-            pygame.draw.rect(window, (255, 255, 255), (start, SCREEN_HEIGHT - array[i], 5, SCREEN_HEIGHT))
-        start += 10
+        pygame.draw.rect(window, (255, 255, 255), (start, SCREEN_HEIGHT - array[i], 5, SCREEN_HEIGHT))
+        start += 3
 
     pygame.display.update()
 
@@ -22,74 +19,43 @@ def bubble_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
         sorted = True 
 
         for i in range(0, len(array) - 1):
-            index = 0
             if array[i] > array[i + 1]: 
                 sorted = False 
-                index = array[i + 1]
                 array[i], array[i + 1] = array[i + 1], array[i] 
 
             pygame.event.clear()
-            draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, index)
+            draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array)
     return array 
 
 # Insertion sort
 def insertion_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
     for i in range(1, len(array)):
         while i > 0 and array[i - 1] > array[i]:
-            index = array[i]
             array[i], array[i - 1] = array[i -1], array[i]
             i -= 1
             pygame.event.clear()
-            draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, index)
+            draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array)
     return array
-
-# Merge Sort
-def merge_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
-    if len(array) > 1:
-        middle = len(array) // 2
-        left = merge_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array[:middle])
-        right = merge_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array[middle:])
-        array = merge(window, SCREEN_WIDTH, SCREEN_HEIGHT,left, right)
-    return array
-
-def merge(window, SCREEN_WIDTH, SCREEN_HEIGHT, left, right):
-    sorted_list = []
-    i = 0
-    j = 0
-
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            sorted_list.append(left[i])
-            i += 1
-        else:
-            sorted_list.append(right[j])
-            j += 1
-        time.sleep(0.0001)
-
-    sorted_list += right[j:]
-    sorted_list += left[i:]
-    pygame.event.clear()
-    draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, sorted_list, -1)
-    return sorted_list
 
 # Selection sort
 def selection_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
     for i in range(len(array) - 1):
         min = i
-        draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, i)
+        draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array)
 
         for j in range(i + 1, len(array)):
             if array[j] < array[min]:
                 min = j
                 time.sleep(0.01)
                 pygame.event.clear()
-                draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, j)
+                draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array)
 
         if min != i:
             temp = array[i]
             array[i] = array[min]
             array[min] = temp
-        draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, min)
+
+        draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array)
 
     return array
 
@@ -120,8 +86,32 @@ def heap_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
         heapify(array, i, 0)
         time.sleep(0.01)
         pygame.event.clear()
-        draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array, i)
+        draw_array(window, SCREEN_WIDTH, SCREEN_HEIGHT, array)
     return array
 
+def cocktail_sort(window, SCREEN_WIDTH, SCREEN_HEIGHT, array):
+	n = len(array)
+	swapped = True
+	start = 0
+	end = n - 1
     
+	while (swapped == True):
+		swapped = False
 
+		for i in range (start, end):
+			if (array[i] > array[i + 1]):
+				array[i], array[i + 1] = array[i + 1], array[i]
+				swapped = True
+
+		if (swapped == False):
+			break
+
+		swapped = False
+		end = end - 1
+          
+		for i in range(end - 1, start - 1, -1):
+			if (array[i] > array[i + 1]):
+				array[i], array[i + 1] = array[i + 1], array[i]
+				swapped = True
+
+		start = start + 1
